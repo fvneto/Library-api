@@ -1,6 +1,6 @@
 # Library-api
 
-Simple CRUD using a RESTfull application with Spring Boot REST Java 8 + JPA + DAO + Hibernate + MySQL.
+Simple **CRUD** using a **RESTfull** application with **Spring Boot REST Java 8 + JPA + DAO + Hibernate + MySQL**.
 
 The other part, frontend has not yet been implemented, but soon I hope to start it and make it available. 
 
@@ -21,41 +21,34 @@ In short, the backend is responsible for providing a web service that can be cal
     - There are two correct ways to create a Spring Boot project. You can use the STS Wizard, or by accessing the [Spring Initializr](https://start.spring.io/) website.
     
 
+# Class and methods
 * **Model:**
-    - Create DataModel Book
+    - Create DataModel **Book** class corresponds to entity and table book.
  
 * **DAO:**
-   - Create InterfaceBookDao
-   - Create BookDaoImpl
- 
+   - Create **InterfaceBookDao** is a interface **DAO**
+   - Create **BookDaoImpl** implements **InterfaceBookDao**
+   
 * **Controller:**
-   - Create Web Controller “BookController”
+   - Create Web Controller **BookController** is a REST Controller which has request mapping methods for RESTful requests such as:
+     - getBookById; 
+     - getAllBooks;
+     - addBook; 
+     - updateBook;
+     - deleteBook.
  
 * **Service:**
-   - Create Interface “InterfaceBookService”
-   - Create class BookService implements InterfaceBookService
+   - Create Interface **InterfaceBookService**
+   - Create class **BookService** implements InterfaceBookService
 
 * **MySQL**
    - Create MySQL table 
-
-* Run Spring Boot Application & Enjoy Result.
-
-# Class and methods
-
-* **Book** class corresponds to entity and table employee.
-
-* **EmployeeRepository** is an interface extends CrudRepository, will be autowired in CustomerController for implementing repository methods and custom finder methods.
-
-* **BookController** is a REST Controller which has request mapping methods for RESTful requests such as:
-  - getBookById; 
-  - getAllBooks;
-  - addBook; 
-  - updateBook;
-  - deleteBook.
   
 * Configuration for Spring Datasource properties in **application.properties**
 
 * Dependencies for Spring Boot and MySQL in **pom.xml**
+
+* Run Spring Boot Application & Enjoy Result.
 
 # application.properties
 
