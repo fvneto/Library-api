@@ -17,7 +17,7 @@ import javax.validation.constraints.NotEmpty;
  *
  */
 @Entity
-@Table(name="books")
+@Table(name = "book")
 public class Book implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -29,7 +29,7 @@ public class Book implements Serializable{
 
 	@NotEmpty
 	@NotBlank
-	@Column(name="TITLE", nullable=false)
+	@Column(name="title", nullable=false)
 	private String title;
 	
 	@Column(name="category")	

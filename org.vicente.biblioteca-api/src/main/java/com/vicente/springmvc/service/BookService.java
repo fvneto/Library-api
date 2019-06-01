@@ -13,37 +13,43 @@ import com.vicente.springmvc.model.Book;
 public class BookService implements InterfaceBookService {
 
 	@Autowired
-	private InterfaceBookDao bookDAO;
+	private InterfaceBookDao interfaceBookDAO;
 
 	@Override
 	public Book getBookById(int bookId) {
-		Book obj = bookDAO.getBookById(bookId);
+		Book obj = interfaceBookDAO.getBookById(bookId);
 		return obj;
 	}
 
 	@Override
 	public List<Book> getAllBooks() {
-		return bookDAO.getAllBooks();
+		return interfaceBookDAO.getAllBooks();
 	}
 
 	@Override
-	public synchronized boolean addBook(Book article) {
-		if (bookDAO.bookExists(article.getTitle(), article.getCategory())) {
+	public synchronized boolean addBook(Book book) {
+		
+		if (interfaceBookDAO.bookExists(book.getTitle(), book.getCategory())) {
+			
 			return false;
+			
 		} else {
-			bookDAO.addBook(article);
+			
+			interfaceBookDAO.addBook(book);
 			return true;
 		}
 	}
 
 	@Override
 	public void updateBook(Book book) {
-		bookDAO.updateBook(book);
+		
+		interfaceBookDAO.updateBook(book);
 	}
 
 	@Override
 	public void deleteBook(int bookId) {
-		bookDAO.deleteBook(bookId);
+		
+		interfaceBookDAO.deleteBook(bookId);
 	}
 
 }

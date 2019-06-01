@@ -27,6 +27,7 @@ public class BookDaoImpl implements InterfaceBookDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Book> getAllBooks() {
+		
 		String hql = "FROM Book as bo ORDER BY bo.bookId";
 		return (List<Book>) entityManager.createQuery(hql).getResultList();
 	}	
@@ -38,20 +39,26 @@ public class BookDaoImpl implements InterfaceBookDao {
 	
 	@Override
 	public void updateBook(Book book) {
-		Book book1 = getBookById(book.getBookId());
-		book1.setTitle(book.getTitle());
-		book.setCategory(book.getCategory());
-		entityManager.flush();
+		
+		Book bookAlter = getBookById(book.getBookId());
+		bookAlter.setTitle(book.getTitle());
+		bookAlter.setCategory(book.getCategory());
+		entityManager.merge(bookAlter);
 	}
+	
 	@Override
 	public void deleteBook(int bookId) {
 		entityManager.remove(getBookById(bookId));
 	}
+	
+	/**
+	 * Responsible method to do a check if the workbook exists in the database.
+	 */
 	@Override
 	public boolean bookExists(String title, String category) {
-		String hql = "FROM Book as bo WHERE bo.title = ? and bo.category = ?";
-		int count = entityManager.createQuery(hql).setParameter(0, title)
-		              .setParameter(1, category).getResultList().size();
+		String hql = "FROM Book as bo WHERE bo.title = :title and bo.category = :category";
+		int count = entityManager.createQuery(hql).setParameter("title", title).setParameter("category", category)
+				.getResultList().size();
 		return count > 0 ? true : false;
 	}
 
